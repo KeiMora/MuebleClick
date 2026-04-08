@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba Simple de Imágenes</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        img { border: 1px solid #ddd; margin: 10px; max-width: 200px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h1>Prueba Simple de Imágenes</h1>
+    
+    <div class="test-section">
+        <h3>Ruta 1: /assets/images/mueblerias/1/logo.jpg</h3>
+        <img src="/assets/images/mueblerias/1/logo.jpg" alt="Logo Ruta 1">
+    </div>
+    
+    <div class="test-section">
+        <h3>Ruta 2: /images/muebleria1/logo.jpg</h3>
+        <img src="/images/muebleria1/logo.jpg" alt="Logo Ruta 2">
+    </div>
+    
+    <div class="test-section">
+        <h3>Ruta 3: ./assets/images/mueblerias/1/logo.jpg</h3>
+        <img src="./assets/images/mueblerias/1/logo.jpg" alt="Logo Ruta 3">
+    </div>
+    
+    <div class="test-section">
+        <h3>Verificación de archivos:</h3>
+        <p>Abre la consola (F12) para ver mensajes de error</p>
+        <p>Si ninguna imagen carga, el problema está en el servidor React</p>
+    </div>
+    
+    <script>
+        console.log('Página de prueba cargada');
+        console.log('URL actual:', window.location.href);
+        
+        // Probar cada ruta
+        const rutas = [
+            '/assets/images/mueblerias/1/logo.jpg',
+            '/images/muebleria1/logo.jpg',
+            './assets/images/mueblerias/1/logo.jpg'
+        ];
+        
+        rutas.forEach((ruta, index) => {
+            fetch(ruta)
+                .then(response => {
+                    console.log(`Ruta ${index + 1} (${ruta}):`, response.status, response.statusText);
+                })
+                .catch(error => {
+                    console.error(`Error en ruta ${index + 1} (${ruta}):`, error);
+                });
+        });
+    </script>
+</body>
+</html>

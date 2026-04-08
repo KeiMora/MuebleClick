@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba Directa de Imágenes</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        img { border: 2px solid #333; margin: 10px; max-width: 300px; height: auto; }
+        .test-section { margin: 20px 0; padding: 15px; border: 2px solid #333; }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Prueba Directa de Imágenes - Raíz de Public</h1>
+    
+    <div class="test-section">
+        <h3>Ruta Directa: /mueblerias/1/logo.jpg</h3>
+        <img src="/mueblerias/1/logo.jpg" alt="Logo Directo" 
+             onload="this.nextElementSibling.innerHTML='✅ CARGADO'; this.nextElementSibling.className='success';"
+             onerror="this.nextElementSibling.innerHTML='❌ ERROR'; this.nextElementSibling.className='error';">
+        <div class="status">Cargando...</div>
+    </div>
+    
+    <div class="test-section">
+        <h3>Producto 1: /mueblerias/1/producto1.jpg</h3>
+        <img src="/mueblerias/1/producto1.jpg" alt="Producto 1" 
+             onload="this.nextElementSibling.innerHTML='✅ CARGADO'; this.nextElementSibling.className='success';"
+             onerror="this.nextElementSibling.innerHTML='❌ ERROR'; this.nextElementSibling.className='error';">
+        <div class="status">Cargando...</div>
+    </div>
+    
+    <div class="test-section">
+        <h3>Producto 2: /mueblerias/1/producto2.jpg</h3>
+        <img src="/mueblerias/1/producto2.jpg" alt="Producto 2" 
+             onload="this.nextElementSibling.innerHTML='✅ CARGADO'; this.nextElementSibling.className='success';"
+             onerror="this.nextElementSibling.innerHTML='❌ ERROR'; this.nextElementSibling.className='error';">
+        <div class="status">Cargando...</div>
+    </div>
+    
+    <div class="test-section">
+        <h3>Producto 3: /mueblerias/1/producto3.jpg</h3>
+        <img src="/mueblerias/1/producto3.jpg" alt="Producto 3" 
+             onload="this.nextElementSibling.innerHTML='✅ CARGADO'; this.nextElementSibling.className='success';"
+             onerror="this.nextElementSibling.innerHTML='❌ ERROR'; this.nextElementSibling.className='error';">
+        <div class="status">Cargando...</div>
+    </div>
+    
+    <div class="test-section">
+        <h3>Verificación de Estructura:</h3>
+        <p>Estructura actual:</p>
+        <pre>
+public/
+├── mueblerias/
+│   └── 1/
+│       ├── logo.jpg ✅
+│       ├── producto1.jpg ✅
+│       ├── producto2.jpg ✅
+│       └── producto3.jpg ✅
+        </pre>
+    </div>
+    
+    <script>
+        console.log('=== PRUEBA DIRECTA DE IMÁGENES ===');
+        console.log('URL actual:', window.location.href);
+        
+        // Verificar archivos con fetch
+        const archivos = [
+            '/mueblerias/1/logo.jpg',
+            '/mueblerias/1/producto1.jpg',
+            '/mueblerias/1/producto2.jpg',
+            '/mueblerias/1/producto3.jpg'
+        ];
+        
+        archivos.forEach((archivo, index) => {
+            fetch(archivo)
+                .then(response => {
+                    console.log(`Archivo ${index + 1}: ${response.status} ${response.statusText}`);
+                    if (response.ok) {
+                        console.log('✅ Archivo accesible:', archivo);
+                    } else {
+                        console.log('❌ Archivo no accesible:', archivo);
+                    }
+                })
+                .catch(error => {
+                    console.error('❌ Error de red:', archivo, error);
+                });
+        });
+    </script>
+</body>
+</html>

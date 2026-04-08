@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de Imágenes</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .image-test { margin: 20px 0; border: 1px solid #ddd; padding: 10px; }
+        img { max-width: 200px; height: auto; }
+        .success { color: green; }
+        .error { color: red; }
+        .debug { background: #f0f0f0; padding: 10px; margin: 10px 0; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>Prueba de Imágenes de Mueblerías</h1>
+    
+    <div class="debug">
+        <h3>Información de Depuración:</h3>
+        <p><strong>URL actual:</strong> <span id="current-url"></span></p>
+        <p><strong>Origen:</strong> <span id="origin"></span></p>
+        <p><strong>Intentando cargar desde:</strong> /assets/images/mueblerias/1/</p>
+    </div>
+    
+    <div class="image-test">
+        <h3>Logo de Mueblería 1 (ruta relativa):</h3>
+        <img src="/assets/images/mueblerias/1/logo.jpg" alt="Logo Mueblería 1" 
+             onerror="this.style.border='2px solid red'; this.nextElementSibling.innerHTML='ERROR: No se pudo cargar';">
+        <div class="status"></div>
+    </div>
+    
+    <div class="image-test">
+        <h3>Logo de Mueblería 1 (ruta absoluta):</h3>
+        <img src="http://localhost:3000/assets/images/mueblerias/1/logo.jpg" alt="Logo Mueblería 1" 
+             onerror="this.style.border='2px solid red'; this.nextElementSibling.innerHTML='ERROR: No se pudo cargar';">
+        <div class="status"></div>
+    </div>
+    
+    <div class="image-test">
+        <h3>Producto 1:</h3>
+        <img src="/assets/images/mueblerias/1/producto1.jpg" alt="Producto 1" 
+             onerror="this.style.border='2px solid red'; this.nextElementSibling.innerHTML='ERROR: No se pudo cargar';">
+        <div class="status"></div>
+    </div>
+    
+    <div class="image-test">
+        <h3>Producto 2:</h3>
+        <img src="/assets/images/mueblerias/1/producto2.jpg" alt="Producto 2" 
+             onerror="this.style.border='2px solid red'; this.nextElementSibling.innerHTML='ERROR: No se pudo cargar';">
+        <div class="status"></div>
+    </div>
+    
+    <div class="image-test">
+        <h3>Producto 3:</h3>
+        <img src="/assets/images/mueblerias/1/producto3.jpg" alt="Producto 3" 
+             onerror="this.style.border='2px solid red'; this.nextElementSibling.innerHTML='ERROR: No se pudo cargar';">
+        <div class="status"></div>
+    </div>
+    
+    <div class="image-test">
+        <h3>Verificación de Rutas:</h3>
+        <p>Rutas que se intentan cargar:</p>
+        <ul>
+            <li>/assets/images/mueblerias/1/logo.jpg</li>
+            <li>http://localhost:3000/assets/images/mueblerias/1/logo.jpg</li>
+            <li>/assets/images/mueblerias/1/producto1.jpg</li>
+            <li>/assets/images/mueblerias/1/producto2.jpg</li>
+            <li>/assets/images/mueblerias/1/producto3.jpg</li>
+        </ul>
+    </div>
+    
+    <div class="image-test">
+        <h3>Prueba con imagen de prueba:</h3>
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='100'%3E%3Crect fill='%23ddd' width='200' height='100'/%3E%3Ctext fill='%23666' font-family='Arial' font-size='14' x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle'%3EImagen de Prueba%3C/text%3E%3C/svg%3E" alt="Prueba">
+        <div class="status">Esta imagen SVG debería funcionar siempre</div>
+    </div>
+    
+    <script>
+        // Mostrar información de depuración
+        document.getElementById('current-url').textContent = window.location.href;
+        document.getElementById('origin').textContent = window.location.origin;
+        
+        // Verificar si las imágenes cargan correctamente
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.onload = function() {
+                    this.nextElementSibling.innerHTML = '✅ Cargado correctamente';
+                    this.nextElementSibling.className = 'status success';
+                    console.log('✅ Imagen cargada:', this.src);
+                };
+                img.onerror = function() {
+                    console.error('❌ Error cargando imagen:', this.src);
+                };
+            });
+        });
+        
+        // Probar acceso directo a las imágenes
+        fetch('/assets/images/mueblerias/1/logo.jpg')
+            .then(response => {
+                console.log('Respuesta del servidor para logo.jpg:', response.status, response.statusText);
+            })
+            .catch(error => {
+                console.error('Error de red para logo.jpg:', error);
+            });
+    </script>
+</body>
+</html>

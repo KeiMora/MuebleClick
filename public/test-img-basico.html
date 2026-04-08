@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Básico de Imágenes</title>
+    <style>
+        body { background: #1a1a2e; color: white; font-family: Arial; padding: 20px; }
+        img { border: 2px solid #e94560; margin: 10px; max-width: 300px; }
+        .test { background: rgba(255,255,255,0.1); padding: 20px; margin: 10px; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test Básico de Imágenes</h1>
+    
+    <div class="test">
+        <h3>Test 1: Imagen en Raíz</h3>
+        <img src="test-logo.jpg" alt="Logo Test" onerror="console.log('Error test-logo.jpg')">
+        <p>URL: test-logo.jpg</p>
+    </div>
+    
+    <div class="test">
+        <h3>Test 2: Logo Mueblería</h3>
+        <img src="/mueblerias/1/logo.jpg" alt="Logo Mueblería" onerror="console.log('Error /mueblerias/1/logo.jpg')">
+        <p>URL: /mueblerias/1/logo.jpg</p>
+    </div>
+    
+    <div class="test">
+        <h3>Test 3: Producto 1</h3>
+        <img src="/mueblerias/1/producto1.jpg" alt="Producto 1" onerror="console.log('Error /mueblerias/1/producto1.jpg')">
+        <p>URL: /mueblerias/1/producto1.jpg</p>
+    </div>
+    
+    <div class="test">
+        <h3>Test 4: Ruta Relativa</h3>
+        <img src="./mueblerias/1/logo.jpg" alt="Logo Relativo" onerror="console.log('Error ./mueblerias/1/logo.jpg')">
+        <p>URL: ./mueblerias/1/logo.jpg</p>
+    </div>
+    
+    <script>
+        console.log('🧪 Test básico iniciado');
+        console.log('📁 URL base:', window.location.origin);
+        
+        // Verificar existencia de imágenes
+        fetch('/mueblerias/1/logo.jpg')
+            .then(response => console.log('✅ /mueblerias/1/logo.jpg existe:', response.status))
+            .catch(error => console.log('❌ Error fetching /mueblerias/1/logo.jpg:', error));
+            
+        fetch('/test-logo.jpg')
+            .then(response => console.log('✅ /test-logo.jpg existe:', response.status))
+            .catch(error => console.log('❌ Error fetching /test-logo.jpg:', error));
+    </script>
+</body>
+</html>

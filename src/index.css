@@ -1,0 +1,1241 @@
+/* Importar estilos de Bootstrap */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+/* Estilos personalizados para MuebleClick */
+
+/* Variables de colores - Paleta Suave y Natural (Tonos Oscurecidos) */
+:root {
+  --primary-color: #6B8E6B;      /* Dark Sea Green oscurecido - menos brillante */
+  --secondary-color: #8FA4B8;    /* Light Steel Blue oscurecido */
+  --accent-color: #D4C4B0;       /* Antique White oscurecido - beige más suave */
+  --success-color: #6B8E6B;      /* Verde oscurecido */
+  --warning-color: #DCDCC8;      /* Beige oscurecido */
+  --info-color: #8FA4B8;         /* Azul oscurecido */
+  --light-color: #F5F0E8;        /* Floral White oscurecido - fondo más suave */
+  --dark-color: #4a4a4a;         /* Gris más suave para texto */
+  --primary-gradient: linear-gradient(135deg, #6B8E6B 0%, #8FA4B8 100%);
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+  --card-hover-shadow: 0 8px 15px rgba(0, 0, 0, 0.12);
+  --accent-gradient: linear-gradient(135deg, #D4C4B0 0%, #E8E0D0 100%);
+  --neutral-light: #F5F0E8;
+  --neutral-medium: #E8E0D0;
+  --neutral-dark: #8B9D8B;
+  --text-primary: #4a4a4a;
+  --text-secondary: #6a6a6a;
+  --border-color: rgba(107, 142, 107, 0.25);
+}
+
+/* Estilos generales - Diseño Minimalista */
+body {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--dark-color);
+  background-color: var(--light-color);
+  font-weight: 300;
+}
+
+/* Main content */
+.main-content {
+  min-height: calc(100vh - 200px);
+  padding-top: 1px;
+}
+
+/* Hero Section - Estilo Minimalista */
+.hero-section {
+  background: var(--primary-gradient);
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1;
+}
+
+.hero-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-image img {
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(212, 165, 116, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.hero-image img:hover {
+  transform: translateY(-5px);
+}
+
+/* Estadísticas */
+.stat-item {
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px);
+}
+
+.stat-item h3 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.stat-item p {
+  font-size: 1.1rem;
+  margin-bottom: 0;
+  color: var(--secondary-color);
+}
+
+/* Tarjetas de mueblerías - Estilo Minimalista */
+.muebleria-card {
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: var(--card-shadow);
+  background: var(--light-color);
+}
+
+.muebleria-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.muebleria-card .card-img-top {
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  filter: brightness(0.95);
+}
+
+.muebleria-card:hover .card-img-top {
+  transform: scale(1.05);
+  filter: brightness(1);
+}
+
+/* Tarjetas de productos - Estilo Minimalista */
+.producto-card {
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: var(--card-shadow);
+  background: var(--light-color);
+}
+
+.producto-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.producto-imagen-container {
+  position: relative;
+  overflow: hidden;
+  height: 250px;
+  border-radius: 20px 20px 0 0;
+}
+
+.producto-imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  filter: brightness(0.95);
+}
+
+.producto-card:hover .producto-imagen {
+  transform: scale(1.03);
+  filter: brightness(1);
+}
+
+.producto-deseos {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  backdrop-filter: blur(10px);
+}
+
+.producto-card:hover .producto-deseos {
+  opacity: 1;
+}
+
+.producto-deseos.active {
+  opacity: 1;
+  background: var(--accent-color);
+  color: white;
+}
+
+.producto-deseos:hover {
+  transform: scale(1.1);
+  background: var(--light-color);
+}
+
+/* Badges */
+.badge {
+  font-size: 0.75rem;
+  padding: 0.25em 0.5em;
+}
+
+/* Botones - Estilo Minimalista */
+.btn {
+  border-radius: 25px;
+  padding: 0.6rem 1.8rem;
+  font-weight: 400;
+  transition: all 0.4s ease;
+  border: 2px solid transparent;
+  letter-spacing: 0.5px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 165, 116, 0.2);
+}
+
+.btn-primary {
+  background: var(--primary-gradient);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 165, 116, 0.3);
+}
+
+.btn-outline-primary {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background: transparent;
+}
+
+.btn-outline-primary:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 165, 116, 0.3);
+}
+
+/* Input groups - Estilo Minimalista */
+.input-group {
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.input-group .form-control {
+  border-radius: 25px;
+  border-right: none;
+  border: 2px solid var(--neutral-light);
+  padding: 0.75rem 1.2rem;
+  transition: all 0.3s ease;
+  font-weight: 300;
+}
+
+.input-group .form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(212, 165, 116, 0.15);
+}
+
+.input-group-text {
+  border-radius: 25px 0 0 25px;
+  background: var(--neutral-light);
+  border-right: none;
+  border: 2px solid var(--neutral-light);
+  color: var(--neutral-dark);
+}
+
+.input-group .btn {
+  border-radius: 0 25px 25px 0;
+  border-left: none;
+}
+
+/* Formularios - Estilo Minimalista */
+.form-control {
+  border-radius: 15px;
+  border: 2px solid var(--neutral-light);
+  padding: 0.75rem 1.2rem;
+  transition: all 0.3s ease;
+  font-weight: 300;
+  background: var(--light-color);
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(212, 165, 116, 0.15);
+  background: var(--light-color);
+}
+
+.form-select {
+  border-radius: 15px;
+  border: 2px solid var(--neutral-light);
+  padding: 0.75rem 1.2rem;
+  font-weight: 300;
+  background: var(--light-color);
+}
+
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(212, 165, 116, 0.15);
+}
+
+/* Cards - Estilo Minimalista */
+.card {
+  border: none;
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  transition: all 0.4s ease;
+  background: var(--light-color);
+  border: 1px solid var(--neutral-light);
+}
+
+.card:hover {
+  box-shadow: var(--card-hover-shadow);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  background: var(--neutral-light);
+  border-bottom: 1px solid var(--neutral-light);
+  border-radius: 20px 20px 0 0;
+  font-weight: 500;
+  color: var(--neutral-dark);
+  padding: 1.2rem 1.5rem;
+}
+
+/* Navegación - Estilo Minimalista */
+.navbar-brand {
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  letter-spacing: 0.5px;
+}
+
+.navbar-nav .nav-link {
+  font-weight: 300;
+  transition: color 0.3s ease;
+  color: var(--dark-color);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  margin: 0 0.25rem;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--primary-color);
+  background: rgba(212, 165, 116, 0.1);
+}
+
+.navbar-nav .nav-link.active {
+  color: var(--primary-color);
+  background: rgba(212, 165, 116, 0.1);
+}
+
+/* Footer - Estilo Minimalista */
+footer {
+  background: linear-gradient(135deg, var(--neutral-medium) 0%, var(--secondary-color) 100%);
+  padding: 3rem 0 2rem;
+  border-top: 1px solid var(--neutral-light);
+}
+
+footer h5 {
+  color: var(--light-color);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem;
+}
+
+footer a {
+  color: var(--light-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  opacity: 0.8;
+}
+
+footer a:hover {
+  color: var(--primary-color);
+  opacity: 1;
+}
+
+/* Paginación - Estilo Minimalista */
+.pagination .page-link {
+  border-radius: 25px;
+  margin: 0 0.5rem;
+  border: 2px solid var(--neutral-light);
+  color: var(--dark-color);
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  font-weight: 300;
+}
+
+.pagination .page-link:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.pagination .page-item.active .page-link {
+  background: var(--primary-gradient);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+/* Alertas - Estilo Minimalista */
+.alert {
+  border-radius: 15px;
+  border: none;
+  padding: 1.2rem 1.8rem;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+
+.alert-info {
+  background: linear-gradient(135deg, var(--info-color), var(--neutral-medium));
+  color: white;
+}
+
+.alert-success {
+  background: linear-gradient(135deg, var(--success-color), #b8d4a8);
+  color: white;
+}
+
+.alert-warning {
+  background: linear-gradient(135deg, var(--warning-color), var(--danger-color));
+  color: white;
+}
+
+.alert-danger {
+  background: linear-gradient(135deg, var(--danger-color), #a85a5c);
+  color: white;
+}
+
+.alert-dismissible .btn-close {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+}
+
+/* Tablas */
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table thead th {
+  background: var(--light-color);
+  border-bottom: 2px solid var(--neutral-light);
+  font-weight: 600;
+}
+
+/* Modales */
+.modal-content {
+  border-radius: 15px;
+  border: none;
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--neutral-light);
+  background: var(--neutral-light);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.slide-in {
+  animation: slideIn 0.4s ease-out;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 60px 0;
+  }
+  
+  .muebleria-card,
+  .producto-card {
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  .stat-item h3 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section {
+    padding: 40px 0;
+  }
+  
+  .muebleria-card .card-img-top,
+  .producto-imagen-container {
+    height: 180px;
+  }
+  
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+  
+  .card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--neutral-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+
+/* Estados vacíos */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--neutral-dark);
+}
+
+.empty-state-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.empty-state-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark-color);
+}
+
+.empty-state-description {
+  margin-bottom: 1.5rem;
+}
+
+/* Loading states */
+.loading-skeleton {
+  background: linear-gradient(90deg, var(--neutral-light) 25%, var(--neutral-medium) 50%, var(--neutral-light) 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Búsqueda */
+.search-container {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid var(--neutral-light);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.search-result-item {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--neutral-light);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-result-item:hover {
+  background-color: var(--neutral-light);
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+/* Header de mueblería */
+.muebleria-header {
+  background: var(--primary-gradient);
+  padding: 3rem 0;
+  color: white;
+}
+
+.muebleria-logo {
+  max-width: 200px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Filtros */
+.filters-sidebar {
+  background: var(--light-color);
+  border-radius: 20px;
+  padding: 1.5rem;
+  position: sticky;
+  top: 20px;
+  border: 1px solid var(--neutral-light);
+}
+
+.filter-group {
+  margin-bottom: 1.5rem;
+}
+
+.filter-title {
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  color: var(--dark-color);
+}
+
+/* Carrito */
+.cart-item {
+  border-bottom: 1px solid var(--neutral-light);
+  padding: 1rem 0;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.cart-summary {
+  background: var(--neutral-light);
+  border-radius: 20px;
+  padding: 1.5rem;
+  position: sticky;
+  top: 20px;
+  border: 1px solid var(--neutral-light);
+}
+
+/* Estilos para el diseño moderno de la página de inicio */
+
+/* Hero Section Moderno - Diseño Profesional */
+.hero-section-modern {
+  background: var(--primary-gradient);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section-modern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(233, 69, 96, 0.1) 0%, transparent 50%);
+  z-index: 1;
+}
+
+.hero-section-modern::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.03"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge {
+  background: var(--accent-gradient);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-title .text-primary {
+  color: var(--accent-color) !important;
+  font-weight: 800;
+}
+
+.hero-description {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  line-height: 1.8;
+  font-weight: 400;
+  max-width: 500px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.stat-item-modern {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.stat-label {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.hero-btn-primary {
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: 30px;
+  padding: 1rem 2.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(233, 69, 96, 0.4);
+}
+
+.hero-btn-secondary {
+  background: transparent;
+  border: 2px solid var(--text-primary);
+  color: var(--text-primary);
+  border-radius: 30px;
+  padding: 1rem 2.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero-btn-secondary:hover {
+  background: var(--text-primary);
+  color: var(--primary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+}
+
+.hero-image {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-image-container {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  background: var(--secondary-color);
+}
+
+.hero-main-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.hero-image-container:hover .hero-main-image {
+  transform: scale(1.05);
+}
+
+.hero-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(233, 69, 96, 0.2), transparent);
+  pointer-events: none;
+}
+
+/* Características */
+.features-section {
+  background: var(--light-color);
+  padding: 5rem 0;
+}
+
+.feature-card {
+  padding: 2.5rem;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  border: 1px solid var(--neutral-light);
+  height: 100%;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--primary-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+  font-size: 2.5rem;
+  color: white;
+  box-shadow: 0 10px 25px rgba(26, 26, 46, 0.3);
+}
+
+.feature-card h4 {
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.feature-card p {
+  color: var(--neutral-dark);
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Sección de Mueblerías */
+.mueblerias-section {
+  background: var(--light-color);
+  padding: 5rem 0;
+}
+
+.section-badge {
+  background: var(--accent-gradient);
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-description {
+  font-size: 1.2rem;
+  color: var(--neutral-dark);
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  line-height: 1.8;
+}
+
+/* Tarjetas de Mueblerías Modernas */
+.muebleria-card-modern {
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  background: white;
+  border: 1px solid var(--neutral-light);
+  height: 100%;
+}
+
+.muebleria-card-modern:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.card-image-wrapper {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+  background: var(--secondary-color);
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.muebleria-card-modern:hover .card-image {
+  transform: scale(1.1);
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(233, 69, 96, 0.8), rgba(26, 26, 46, 0.8));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.muebleria-card-modern:hover .card-overlay {
+  opacity: 1;
+}
+
+.overlay-btn {
+  background: white;
+  color: var(--accent-color);
+  border: none;
+  border-radius: 30px;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transform: translateY(30px);
+  transition: all 0.4s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.muebleria-card-modern:hover .overlay-btn {
+  transform: translateY(0);
+}
+
+.overlay-btn:hover {
+  background: var(--accent-color);
+  color: white;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(233, 69, 96, 0.3);
+}
+
+.card-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.card-title-modern {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.card-subtitle {
+  color: var(--neutral-dark);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.card-info {
+  margin-bottom: 1.5rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+  color: var(--neutral-dark);
+  font-size: 0.95rem;
+}
+
+.info-item i {
+  color: var(--accent-color);
+  font-size: 1.1rem;
+}
+
+.card-badges {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.product-badge {
+  background: var(--success-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  border: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.location-badge {
+  background: var(--info-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  border: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* CTA Section */
+.cta-section {
+  background: var(--primary-gradient);
+  color: white;
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.03"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+  opacity: 0.1;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+}
+
+.cta-badge {
+  background: var(--accent-gradient);
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+}
+
+.cta-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cta-description {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.8;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: 30px;
+  padding: 1rem 2.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+}
+
+.cta-btn:hover {
+  background: var(--accent-color);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(233, 69, 96, 0.4);
+}
+
+.cta-btn-outline {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  border-radius: 30px;
+  padding: 1rem 2.5rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cta-btn-outline:hover {
+  background: white;
+  color: var(--primary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-stats {
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .hero-actions {
+    justify-content: center;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .cta-title {
+    font-size: 2rem;
+  }
+  
+  .cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+  }
+  
+  .hero-btn-primary,
+  .hero-btn-secondary,
+  .cta-btn,
+  .cta-btn-outline {
+    width: 100%;
+    max-width: 300px;
+  }
+}

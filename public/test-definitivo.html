@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Definitivo</title>
+    <style>
+        body { background: #1a1a2e; color: white; font-family: Arial; padding: 20px; }
+        img { border: 3px solid #e94560; margin: 10px; max-width: 400px; border-radius: 10px; }
+        .test { background: rgba(255,255,255,0.1); padding: 20px; margin: 10px; border-radius: 10px; }
+        .success { color: #28a745; font-size: 20px; }
+        .error { color: #dc3545; font-size: 20px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 TEST DEFINITIVO DE IMÁGENES</h1>
+    
+    <div class="test">
+        <h3>Test Imagen en Raíz (logo-muebleria.jpg)</h3>
+        <img src="logo-muebleria.jpg" alt="Logo Muebleria" 
+             onload="this.nextElementSibling.innerHTML='✅ IMAGEN CARGADA EXITOSAMENTE'; this.nextElementSibling.className='success';"
+             onerror="this.nextElementSibling.innerHTML='❌ ERROR AL CARGAR IMAGEN'; this.nextElementSibling.className='error';">
+        <div class="loading">⏳ Cargando...</div>
+        <p><strong>URL:</strong> logo-muebleria.jpg</p>
+    </div>
+    
+    <div class="test">
+        <h3>Test Imagen con Ruta Absoluta</h3>
+        <img src="/logo-muebleria.jpg" alt="Logo Muebleria Absoluto" 
+             onload="this.nextElementSibling.innerHTML='✅ IMAGEN CARGADA EXITOSAMENTE'; this.nextElementSibling.className='success';"
+             onerror="this.nextElementSibling.innerHTML='❌ ERROR AL CARGAR IMAGEN'; this.nextElementSibling.className='error';">
+        <div class="loading">⏳ Cargando...</div>
+        <p><strong>URL:</strong> /logo-muebleria.jpg</p>
+    </div>
+    
+    <div class="test">
+        <h3>Verificación de Archivo</h3>
+        <button onclick="verificarArchivo()" style="background: #e94560; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+            📋 Verificar Existencia del Archivo
+        </button>
+        <div id="resultado"></div>
+    </div>
+    
+    <div class="test">
+        <h3>Información del Sistema</h3>
+        <p><strong>URL Actual:</strong> <span id="url-actual"></span></p>
+        <p><strong>Origen:</strong> <span id="origen"></span></p>
+        <p><strong>Pathname:</strong> <span id="pathname"></span></p>
+    </div>
+    
+    <script>
+        document.getElementById('url-actual').textContent = window.location.href;
+        document.getElementById('origen').textContent = window.location.origin;
+        document.getElementById('pathname').textContent = window.location.pathname;
+        
+        async function verificarArchivo() {
+            const resultado = document.getElementById('resultado');
+            resultado.innerHTML = '⏳ Verificando...';
+            
+            try {
+                const response = await fetch('/logo-muebleria.jpg');
+                if (response.ok) {
+                    resultado.innerHTML = '✅ Archivo existe y es accesible (Status: ' + response.status + ')';
+                    resultado.className = 'success';
+                } else {
+                    resultado.innerHTML = '❌ Archivo no encontrado (Status: ' + response.status + ')';
+                    resultado.className = 'error';
+                }
+            } catch (error) {
+                resultado.innerHTML = '❌ Error de red: ' + error.message;
+                resultado.className = 'error';
+            }
+        }
+        
+        // Verificación automática
+        setTimeout(verificarArchivo, 1000);
+        
+        console.log('🧪 Test definitivo iniciado');
+        console.log('📁 Esperando imagen: logo-muebleria.jpg');
+    </script>
+</body>
+</html>

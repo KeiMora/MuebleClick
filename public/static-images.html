@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Imágenes Estáticas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a2e;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .image-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            padding: 15px;
+        }
+        .image-card img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 2px solid #e94560;
+        }
+        h1 { color: #e94560; text-align: center; }
+        h2 { color: #ffd93d; }
+        .path { color: #3282b8; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test de Imágenes Estáticas</h1>
+        
+        <div class="image-grid">
+            <div class="image-card">
+                <h3>Logo de la Mueblería</h3>
+                <img src="./mueblerias/1/logo.jpg" alt="Logo Mueblería 1" 
+                     onerror="this.style.border='2px solid #dc3545'; this.alt='ERROR: No se pudo cargar';">
+                <p class="path">./mueblerias/1/logo.jpg</p>
+            </div>
+            
+            <div class="image-card">
+                <h3>Producto 1 - Sofá Moderno</h3>
+                <img src="./mueblerias/1/producto1.jpg" alt="Producto 1"
+                     onerror="this.style.border='2px solid #dc3545'; this.alt='ERROR: No se pudo cargar';">
+                <p class="path">./mueblerias/1/producto1.jpg</p>
+            </div>
+            
+            <div class="image-card">
+                <h3>Producto 2 - Silla de Comedor</h3>
+                <img src="./mueblerias/1/producto2.jpg" alt="Producto 2"
+                     onerror="this.style.border='2px solid #dc3545'; this.alt='ERROR: No se pudo cargar';">
+                <p class="path">./mueblerias/1/producto2.jpg</p>
+            </div>
+            
+            <div class="image-card">
+                <h3>Producto 3 - Mesa de Centro</h3>
+                <img src="./mueblerias/1/producto3.jpg" alt="Producto 3"
+                     onerror="this.style.border='2px solid #dc3545'; this.alt='ERROR: No se pudo cargar';">
+                <p class="path">./mueblerias/1/producto3.jpg</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 10px;">
+            <h2>🔍 Enlaces Directos</h2>
+            <p>Si las imágenes no cargan arriba, intenta abrir estos enlaces directamente:</p>
+            <div>
+                <a href="./mueblerias/1/logo.jpg" target="_blank" style="color: #e94560; margin-right: 20px;">Logo</a>
+                <a href="./mueblerias/1/producto1.jpg" target="_blank" style="color: #e94560; margin-right: 20px;">Producto 1</a>
+                <a href="./mueblerias/1/producto2.jpg" target="_blank" style="color: #e94560; margin-right: 20px;">Producto 2</a>
+                <a href="./mueblerias/1/producto3.jpg" target="_blank" style="color: #e94560;">Producto 3</a>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 10px;">
+            <h2>📋 Información del Sistema</h2>
+            <p><strong>URL Actual:</strong> <span id="url"></span></p>
+            <p><strong>Estado:</strong> <span id="status">Verificando...</span></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('url').textContent = window.location.href;
+        
+        let loadedCount = 0;
+        const totalImages = 4;
+        
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', () => {
+                loadedCount++;
+                updateStatus();
+            });
+            img.addEventListener('error', () => {
+                updateStatus();
+            });
+        });
+        
+        function updateStatus() {
+            const status = document.getElementById('status');
+            if (loadedCount === totalImages) {
+                status.textContent = '✅ Todas las imágenes cargadas correctamente';
+                status.style.color = '#28a745';
+            } else if (loadedCount > 0) {
+                status.textContent = `⚠️ ${loadedCount}/${totalImages} imágenes cargadas`;
+                status.style.color = '#ffc107';
+            } else {
+                status.textContent = '❌ Ninguna imagen cargada';
+                status.style.color = '#dc3545';
+            }
+        }
+        
+        setTimeout(updateStatus, 2000);
+    </script>
+</body>
+</html>
