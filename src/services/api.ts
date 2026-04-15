@@ -13,7 +13,7 @@ import {
 } from '../types';
 
 // Configuración base de la API
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8004/api';
 
 // Crear instancia de axios con configuración base
 const api: AxiosInstance = axios.create({
@@ -52,9 +52,12 @@ api.interceptors.response.use(
 
 // Función helper para manejar respuestas
 const handleResponse = <T>(response: AxiosResponse): ApiResponse<T> => {
+  // El backend devuelve { success: true, data: [...] }
+  // Extraemos response.data.data si existe, sino usamos response.data
+  const responseData = response.data;
   return {
-    success: true,
-    data: response.data,
+    success: responseData.success ?? true,
+    data: responseData.data ?? responseData,
   };
 };
 
@@ -62,7 +65,7 @@ const handleResponse = <T>(response: AxiosResponse): ApiResponse<T> => {
 export const authAPI = {
   login: async (credentials: LoginCredentials): Promise<ApiResponse<{ user: Usuario; token: string }>> => {
     try {
-      const response = await api.post('/auth/login', credentials);
+      const response = await api.post('/login', credentials);
       return handleResponse(response);
     } catch (error: any) {
       return {
@@ -74,7 +77,7 @@ export const authAPI = {
 
   register: async (data: RegisterData): Promise<ApiResponse<{ user: Usuario; token: string }>> => {
     try {
-      const response = await api.post('/auth/register', data);
+      const response = await api.post('/register', data);
       return handleResponse(response);
     } catch (error: any) {
       return {
@@ -86,7 +89,7 @@ export const authAPI = {
 
   getCurrentUser: async (): Promise<ApiResponse<Usuario>> => {
     try {
-      const response = await api.get('/auth/me');
+      const response = await api.get('/verify');
       return handleResponse(response);
     } catch (error: any) {
       return {
@@ -155,6 +158,18 @@ export const muebleriasAPI = {
       return {
         success: false,
         error: error.response?.data?.message || 'Error al obtener sucursales',
+      };
+    }
+  },
+
+  create: async (data: Partial<Muebleria>): Promise<ApiResponse<Muebleria>> => {
+    try {
+      const response = await api.post('/mueblerias', data);
+      return handleResponse(response);
+    } catch (error: any) {
+      return {
+        success: false,
+        error: error.response?.data?.message || 'Error al crear mueblería',
       };
     }
   },

@@ -32,49 +32,26 @@ export const MuebleriaDetail: React.FC = () => {
       try {
         setLoading(true);
         
-        // Simulación de carga - en producción usaríamos la API
-        const mockMuebleria: Muebleria = {
-          id_muebleria: parseInt(id),
-          nombre_negocio: `In Decor Davila`,
-          razon_social: `In Decor Davila SA de CV`,
-          rfc: `MUE${id}010101ABC`,
-          direccion_principal: `San Pedro Tultepec, Lerma. EdoMex`,
-          telefono: `55-1234-567${id}`,
-          creado_en: new Date().toISOString(),
-          total_productos: 15,
-          num_sucursales: 2,
-          descripcion: `Diseñó, calidad e innovación.`,
-          email: `indecor@davila.com`,
-          whatsapp: `55-9876-5432`,
-          facebook: `https://facebook.com/indecordavila`,
-          instagram: `https://instagram.com/indecordavila`,
-        };
+        // Cargar datos reales de la API
+        const muebleriaResponse = await muebleriasAPI.getById(parseInt(id));
+        if (muebleriaResponse.success && muebleriaResponse.data) {
+          setMuebleria(muebleriaResponse.data);
+        } else {
+          setError('No se encontró la mueblería');
+          return;
+        }
         
-        const mockCategorias = ['Salas', 'Recámaras', 'Comedores', 'Oficina'];
-        const mockProductos: Producto[] = Array.from({ length: 15 }, (_, i) => ({
-          id_producto: i + 1,
-          sku: `MUE${id}-PRD${String(i + 1).padStart(3, '0')}`,
-          id_muebleria: parseInt(id),
-          nombre: `Producto ${i + 1} de Mueblería ${id}`,
-          descripcion: `Descripción detallada del producto ${i + 1}`,
-          categoria: mockCategorias[i % mockCategorias.length],
-          unidad_medida: 'pieza',
-          imagen_url: `producto1.jpg`,
-          precio_venta: Math.floor(Math.random() * 10000) + 1000,
-          peso_kg: Math.floor(Math.random() * 100) + 10,
-          volumen_m3: Math.random() * 2 + 0.5,
-          tipo_producto: 'producto_final' as const,
-          color: ['Negro', 'Blanco', 'Madera', 'Gris'][i % 4],
-          material: ['Madera de roble', 'Metal', 'Tela', 'Cuero'][i % 4],
-          medidas: `${1 + i}m x ${0.5 + i * 0.2}m x ${0.7 + i * 0.1}m`,
-          creado_en: new Date().toISOString(),
-          actualizado_en: new Date().toISOString(),
-          muebleria_nombre: mockMuebleria.nombre_negocio,
-        }));
-        
-        setMuebleria(mockMuebleria);
-        setCategorias(mockCategorias);
-        setProductos(mockProductos);
+        // Cargar productos de la mueblería
+        const productosResponse = await productosAPI.getByMuebleria(parseInt(id));
+        if (productosResponse.success && productosResponse.data) {
+          const responseData = productosResponse.data as any;
+          const productosData: Producto[] = responseData.items || responseData || [];
+          setProductos(productosData);
+          
+          // Extraer categorías únicas
+          const categoriasUnicas = Array.from(new Set(productosData.map((p) => p.categoria).filter((c): c is string => !!c)));
+          setCategorias(categoriasUnicas);
+        }
         
       } catch (err) {
         setError('Error al cargar la información de la mueblería');
@@ -187,7 +164,7 @@ export const MuebleriaDetail: React.FC = () => {
           <Row className="align-items-center">
             <Col lg={3}>
               <img
-                src={`/assets/images/mueblerias/${muebleria.id_muebleria}/logo.jpg`}
+                src={muebleria.logo_url || `/mueblerias/${muebleria.id_muebleria}/logo.jpg`}
                 alt={muebleria.nombre_negocio}
                 className="img-fluid rounded muebleria-logo"
                 onError={(e) => {

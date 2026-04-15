@@ -10,6 +10,7 @@ import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { Profile } from './pages/Profile';
 import { AgregarProducto } from './pages/AgregarProducto';
+import { AgregarMuebleria } from './pages/AgregarMuebleria';
 import { AnalisisVentas } from './pages/AnalisisVentas';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import './App.css';
@@ -27,6 +28,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/agregar-producto" element={<AgregarProducto />} />
+<Route path="/agregar-muebleria" element={<AgregarMuebleria />} />
           <Route path="/analisis-ventas" element={<AnalisisVentas />} />
           <Route 
             path="/profile" 

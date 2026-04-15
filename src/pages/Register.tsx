@@ -196,7 +196,7 @@ export const Register: React.FC = () => {
               textTransform: 'uppercase',
               letterSpacing: '1px'
             }}>
-              Sign Up
+              Registrarse
             </Link>
             <Link to="/login" style={{
               textDecoration: 'none',
@@ -209,7 +209,7 @@ export const Register: React.FC = () => {
               border: '1px solid #ddd',
               borderRadius: '4px'
             }}>
-              Login
+              Iniciar Sesión
             </Link>
           </div>
 
@@ -229,14 +229,14 @@ export const Register: React.FC = () => {
                 fontWeight: '600',
                 marginBottom: '6px'
               }}>
-                Full Name
+                Nombre Completo
               </Form.Label>
               <Form.Control
                 type="text"
                 name="nombre"
                 value={formData.nombre}
                 onChange={handleChange}
-                placeholder="Enter your full name"
+                placeholder="Ingresa tu nombre completo"
                 required
                 style={{
                   borderRadius: '0',
@@ -257,14 +257,14 @@ export const Register: React.FC = () => {
                 fontWeight: '600',
                 marginBottom: '6px'
               }}>
-                Email
+                Correo Electrónico
               </Form.Label>
               <Form.Control
                 type="email"
                 name="correo"
                 value={formData.correo}
                 onChange={handleChange}
-                placeholder="Enter your email"
+                placeholder="Ingresa tu correo electrónico"
                 required
                 style={{
                   borderRadius: '0',
@@ -286,14 +286,14 @@ export const Register: React.FC = () => {
                   fontWeight: '600',
                   marginBottom: '6px'
                 }}>
-                  Password
+                  Contraseña
                 </Form.Label>
                 <Form.Control
                   type={showPassword ? 'text' : 'password'}
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  placeholder="Password"
+                  placeholder="Contraseña"
                   required
                   minLength={8}
                   style={{
@@ -315,14 +315,14 @@ export const Register: React.FC = () => {
                   fontWeight: '600',
                   marginBottom: '6px'
                 }}>
-                  Confirm Password
+                  Confirmar Contraseña
                 </Form.Label>
                 <Form.Control
                   type={showConfirmPassword ? 'text' : 'password'}
                   name="password_confirm"
                   value={formData.password_confirm}
                   onChange={handleChange}
-                  placeholder="Confirm"
+                  placeholder="Confirmar"
                   required
                   minLength={8}
                   style={{
@@ -340,7 +340,7 @@ export const Register: React.FC = () => {
             <div className="mb-3">
               <small style={{ fontSize: '0.75rem', color: '#666' }}>
                 <i className={`bi ${passwordStrength.length ? 'bi-check-square-fill text-success' : 'bi-square'}`}></i>
-                <span className="ms-2">Minimum 8 characters</span>
+                <span className="ms-2">Mínimo 8 caracteres</span>
               </small>
             </div>
 
@@ -349,7 +349,7 @@ export const Register: React.FC = () => {
                 type="checkbox" 
                 label={
                   <span style={{ fontSize: '0.8rem', color: '#555' }}>
-                    I have accepted the terms and conditions
+                    He aceptado los términos y condiciones
                   </span>
                 }
                 required
@@ -375,10 +375,10 @@ export const Register: React.FC = () => {
               {loading ? (
                 <>
                   <span className="spinner-border spinner-border-sm me-2"></span>
-                  Creating...
+                  Creando...
                 </>
               ) : (
-                <>Sign Up</>
+                <>Registrarse</>
               )}
             </Button>
           </Form>

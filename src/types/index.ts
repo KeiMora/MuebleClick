@@ -14,6 +14,7 @@ export interface Muebleria {
   total_productos?: number;
   descripcion?: string;
   email?: string;
+  logo_url?: string;
   whatsapp?: string;
   facebook?: string;
   instagram?: string;

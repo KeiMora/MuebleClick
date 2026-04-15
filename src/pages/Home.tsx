@@ -184,195 +184,19 @@ export const Home: React.FC = () => {
           </div>
 
           {mueblerias.length === 0 ? (
-            // Mostrar datos de demostración con imágenes reales si no hay mueblerías
-            <Row className="g-4">
-              <Col lg={4} md={6}>
-                <Card className="muebleria-card-modern h-100">
-                  <div className="card-image-wrapper">
-                    <img 
-                      src="/mueblerias/2/logo.jpg"
-                      alt="In Decor Davila"
-                      className="card-image"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        transition: 'transform 0.6s ease',
-                        backgroundColor: '#1a1a2e',
-                        minHeight: '280px'
-                      }}
-                    />
-                    <div className="card-overlay">
-                      <Button 
-                        variant="light" 
-                        className="overlay-btn"
-                        href="/muebleria/1"
-                      >
-                        <i className="bi bi-eye"></i> Ver Catálogo
-                      </Button>
-                    </div>
-                  </div>
-                  <Card.Body className="p-4">
-                    <div className="card-content">
-                      <Card.Title className="card-title-modern">In decor Davila</Card.Title>
-                      <Card.Text className="card-subtitle">Diseño Contemporáneo y Funcional</Card.Text>
-                      
-                      <div className="card-info">
-                        <div className="info-item">
-                          <i className="bi bi-geo-alt"></i>
-                          <span>Av. Reforma 123, Cuauhtémoc, CDMX</span>
-                        </div>
-                        <div className="info-item">
-                          <i className="bi bi-telephone"></i>
-                          <span>55-1234-5678</span>
-                        </div>
-                        <div className="info-item">
-                          <i className="bi bi-envelope"></i>
-                          <span>info@mueblesmodernos.com</span>
-                        </div>
-                      </div>
-                      
-                      <div className="card-badges">
-                        <Badge className="product-badge">
-                          <i className="bi bi-box"></i> 3 productos
-                        </Badge>
-                        <Badge className="location-badge">
-                          <i className="bi bi-geo"></i> 1 sucursal
-                        </Badge>
-                        <Badge className="location-badge" style={{ background: 'var(--warning-color)' }}>
-                          <i className="bi bi-star"></i> Premium
-                        </Badge>
-                      </div>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </Col>
-
-              <Col lg={4} md={6}>
-                <Card className="muebleria-card-modern h-100">
-                  <div className="card-image-wrapper">
-                    <img 
-                      src="/mueblerias/1/producto1.jpg"
-                      alt="Muebles Clásicos y Tradicionales"
-                      className="card-image"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        transition: 'transform 0.6s ease',
-                        backgroundColor: '#1a1a2e',
-                        minHeight: '280px'
-                      }}
-                    />
-                    <div className="card-overlay">
-                      <Button 
-                        variant="light" 
-                        className="overlay-btn"
-                        href="/muebleria/2"
-                      >
-                        <i className="bi bi-eye"></i> Ver Catálogo
-                      </Button>
-                    </div>
-                  </div>
-                  <Card.Body className="p-4">
-                    <div className="card-content">
-                      <Card.Title className="card-title-modern">Sofá Moderno Premium</Card.Title>
-                      <Card.Text className="card-subtitle">Elegancia y Confort para tu Sala</Card.Text>
-                      
-                      <div className="card-info">
-                        <div className="info-item">
-                          <i className="bi bi-geo-alt"></i>
-                          <span>Blvd. Juárez 456, Centro, Guadalajara</span>
-                        </div>
-                        <div className="info-item">
-                          <i className="bi bi-telephone"></i>
-                          <span>33-8765-4321</span>
-                        </div>
-                        <div className="info-item">
-                          <i className="bi bi-envelope"></i>
-                          <span>contacto@sofapremium.com</span>
-                        </div>
-                      </div>
-                      
-                      <div className="card-badges">
-                        <Badge className="product-badge">
-                          <i className="bi bi-box"></i> 5 productos
-                        </Badge>
-                        <Badge className="location-badge">
-                          <i className="bi bi-geo"></i> 2 sucursales
-                        </Badge>
-                        <Badge className="location-badge" style={{ background: 'var(--success-color)' }}>
-                          <i className="bi bi-truck"></i> Envío Gratis
-                        </Badge>
-                      </div>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </Col>
-
-              <Col lg={4} md={6}>
-                <Card className="muebleria-card-modern h-100">
-                  <div className="card-image-wrapper">
-                    <img 
-                      src="/mueblerias/1/producto2.jpg"
-                      alt="Muebles Rústicos del Bajío"
-                      className="card-image"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        transition: 'transform 0.6s ease',
-                        backgroundColor: '#1a1a2e',
-                        minHeight: '280px'
-                      }}
-                    />
-                    <div className="card-overlay">
-                      <Button 
-                        variant="light" 
-                        className="overlay-btn"
-                        href="/muebleria/3"
-                      >
-                        <i className="bi bi-eye"></i> Ver Catálogo
-                      </Button>
-                    </div>
-                  </div>
-                  <Card.Body className="p-4">
-                    <div className="card-content">
-                      <Card.Title className="card-title-modern">Silla Ejecutiva de Oficina</Card.Title>
-                      <Card.Text className="card-subtitle">Estilo Colonial y Madera Natural</Card.Text>
-                      
-                      <div className="card-info">
-                        <div className="info-item">
-                          <i className="bi bi-geo-alt"></i>
-                          <span>Calle Hidalgo 789, Centro, Toluca</span>
-                        </div>
-                        <div className="info-item">
-                          <i className="bi bi-telephone"></i>
-                          <span>722-345-6789</span>
-                        </div>
-                        <div className="info-item">
-                          <i className="bi bi-envelope"></i>
-                          <span>ventas@sillasoficina.com</span>
-                        </div>
-                      </div>
-                      
-                      <div className="card-badges">
-                        <Badge className="product-badge">
-                          <i className="bi bi-box"></i> 8 productos
-                        </Badge>
-                        <Badge className="location-badge">
-                          <i className="bi bi-geo"></i> 1 sucursal
-                        </Badge>
-                        <Badge className="location-badge" style={{ background: 'var(--info-color)' }}>
-                          <i className="bi bi-award"></i> Garantía 5 años
-                        </Badge>
-                      </div>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </Col>
-
-            </Row>
+            <div className="text-center py-5">
+              <i className="bi bi-shop" style={{ fontSize: '4rem', color: '#6B8E6B' }}></i>
+              <h3 className="mt-3">No hay mueblerías registradas</h3>
+              <p className="text-muted">Comienza agregando tu primera mueblería para probar el sistema.</p>
+              <Button 
+                variant="success" 
+                href="/agregar-muebleria"
+                className="mt-3"
+                style={{ background: '#6B8E6B', border: 'none' }}
+              >
+                <i className="bi bi-plus-lg"></i> Agregar Mueblería
+              </Button>
+            </div>
           ) : (
             <Row className="g-4">
               {mueblerias.map((muebleria) => (
@@ -380,7 +204,7 @@ export const Home: React.FC = () => {
                   <Card className="muebleria-card-modern h-100">
                     <div className="card-image-wrapper">
                       <img 
-                        src="/mueblerias/1/logo.jpg"
+                        src={muebleria.logo_url || `/mueblerias/${muebleria.id_muebleria}/logo.jpg`}
                         alt={muebleria.nombre_negocio}
                         className="card-image"
                         style={{

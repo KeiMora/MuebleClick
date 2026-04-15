@@ -181,7 +181,7 @@ export const Login: React.FC = () => {
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
               <Form.Group className="mb-4" controlId="correo">
                 <Form.Label style={{ color: '#5a5a5a', fontWeight: '600', fontSize: '0.9rem', marginBottom: '8px' }}>
-                  Correo Electronico
+                  Correo Electrónico
                 </Form.Label>
                 <Form.Control
                   type="email"
@@ -202,14 +202,14 @@ export const Login: React.FC = () => {
 
               <Form.Group className="mb-4" controlId="password">
                 <Form.Label style={{ color: '#5a5a5a', fontWeight: '600', fontSize: '0.9rem', marginBottom: '8px' }}>
-                  Contrasena
+                  Contraseña
                 </Form.Label>
                 <Form.Control
                   type={showPassword ? 'text' : 'password'}
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  placeholder="Tu contrasena"
+                  placeholder="Tu contraseña"
                   required
                   style={{ 
                     borderRadius: '12px', 
@@ -227,7 +227,7 @@ export const Login: React.FC = () => {
                   label={<span style={{ fontSize: '0.9rem', color: '#666' }}>Recordarme</span>}
                 />
                 <Link to="/recuperar" style={{ fontSize: '0.9rem', color: '#6B8E6B', textDecoration: 'none', fontWeight: '500' }}>
-                  Olvidaste tu contrasena?
+                  ¿Olvidaste tu contraseña?
                 </Link>
               </div>
 
